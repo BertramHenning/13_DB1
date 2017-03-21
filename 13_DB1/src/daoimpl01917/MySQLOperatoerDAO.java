@@ -18,7 +18,8 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 	    	if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke");
 	    	return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("opr_fornavn"), rs.getString("opr_efternavn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
 	    }
-	    catch (SQLException e) {throw new DALException(e); }
+	    catch (SQLException e) {throw new DALException(e); 
+	    }
 		
 	}
 	
