@@ -15,10 +15,10 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 
 	@Override
 	public ProduktBatchDTO getProduktBatch(int pbId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE pbId = " + pbId);
+		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE pb_id = " + pbId);
 	    try {
 	    	if (!rs.first()) throw new DALException("Produktbatch " + pbId + " findes ikke");
-	    	return new ProduktBatchDTO (rs.getInt("pbId"), rs.getInt("status"), rs.getInt("receptId"));
+	    	return new ProduktBatchDTO (rs.getInt("pb_id"), rs.getInt("status"), rs.getInt("recept_id"));
 	    }
 	    catch (SQLException e) {throw new DALException(e); }
 	}
@@ -31,7 +31,7 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 		{
 			while (rs.next()) 
 			{
-				list.add(new ProduktBatchDTO (rs.getInt("pbId"), rs.getInt("status"), rs.getInt("receptId")));
+				list.add(new ProduktBatchDTO (rs.getInt("pb_id"), rs.getInt("status"), rs.getInt("recept_id")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }
@@ -41,7 +41,7 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 	@Override
 	public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
 		Connector.doUpdate(
-				"INSERT INTO produktbatch(pbId, status, receptId) VALUES " +
+				"INSERT INTO produktbatch(pb_id, status, recept_id) VALUES " +
 				"(" + produktbatch.getPbId() + ", '" + produktbatch.getStatus() + ", '" + produktbatch.getReceptId() + "')"
 			);
 
@@ -50,8 +50,8 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 	@Override
 	public void updateProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
 		Connector.doUpdate(
-				"UPDATE produktbatch SET  status = '" + produktbatch.getStatus() + "', receptId =  '" + produktbatch.getReceptId() + 
-				"' WHERE pbId = " + produktbatch.getPbId()
+				"UPDATE produktbatch SET  status = '" + produktbatch.getStatus() + "', recept_id =  '" + produktbatch.getReceptId() + 
+				"' WHERE pb_id = " + produktbatch.getPbId()
 		);
 
 	}
