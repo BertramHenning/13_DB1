@@ -30,7 +30,7 @@ public class MySQLProduktBatchKompDAO implements ProduktBatchKompDAO {
 		Connector.doUpdate(
 				"INSERT INTO produktbatchkomponent(pb_id, rb_id, tara, netto, opr_id) VALUES " +
 				"(" + produktbatchkomponent.getPbId() + ", '" + produktbatchkomponent.getRbId() + "', '" + produktbatchkomponent.getTara() + "', '" + produktbatchkomponent.getNetto() + "', '" + 
-				produktbatchkomponent.getOprId() + ")"
+				produktbatchkomponent.getOprId() + ");"
 			);
 
 	}
@@ -39,7 +39,7 @@ public class MySQLProduktBatchKompDAO implements ProduktBatchKompDAO {
 	public void updateProduktBatchKomp(ProduktBatchKompDTO produktbatchkomponent) throws DALException {
 		Connector.doUpdate(
 				"UPDATE produktbatchkomponent SET  tara = '" + produktbatchkomponent.getTara() + "', netto = '" + produktbatchkomponent.getNetto() + "', opr_id =  '" + produktbatchkomponent.getOprId() + "' WHERE pb_id = " +
-				produktbatchkomponent.getPbId() + "AND rb_id = " + produktbatchkomponent.getRbId()
+				produktbatchkomponent.getPbId() + "AND rb_id = " + produktbatchkomponent.getRbId() + ";"
 		);
 
 	}
@@ -47,7 +47,7 @@ public class MySQLProduktBatchKompDAO implements ProduktBatchKompDAO {
 	@Override
 	public List<ProduktBatchKompDTO> getProduktBatchKompList() throws DALException {
 		List<ProduktBatchKompDTO> list = new ArrayList<ProduktBatchKompDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomponent");
+		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomponent;");
 		try
 		{
 			while (rs.next()) 
@@ -64,7 +64,7 @@ public class MySQLProduktBatchKompDAO implements ProduktBatchKompDAO {
 	@Override
 	public List<ProduktBatchKompDTO> getProduktBatchKompList(int pbId) throws DALException {
 		List<ProduktBatchKompDTO> list = new ArrayList<ProduktBatchKompDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomponent WHERE pb_id = " + pbId);
+		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatchkomponent WHERE pb_id = " + pbId +";");
 		try
 		{
 			while (rs.next()) 

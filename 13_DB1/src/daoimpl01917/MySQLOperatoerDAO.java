@@ -13,7 +13,7 @@ import dto01917.OperatoerDTO;
 
 public class MySQLOperatoerDAO implements OperatoerDAO {
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);
+		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId + ";");
 	    try {
 	    	if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke");
 	    	return new OperatoerDTO (rs.getInt("opr_id"), rs.getString("opr_fornavn"), rs.getString("opr_efternavn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
@@ -27,7 +27,7 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 			Connector.doUpdate(
 				"INSERT INTO operatoer(opr_id, opr_fornavn, opr_efternavn, ini, cpr, password) VALUES " +
 				"(" + opr.getOprId() + ", '" + opr.getOprFornavn() + "', '" + opr.getOprEfternavn() + "', '" + opr.getIni() + "', '" + 
-				opr.getCpr() + "', '" + opr.getPassword() + "')"
+				opr.getCpr() + "', '" + opr.getPassword() + "');"
 			);
 	}
 	
@@ -35,13 +35,13 @@ public class MySQLOperatoerDAO implements OperatoerDAO {
 		Connector.doUpdate(
 				"UPDATE operatoer SET  opr_fornavn = '" + opr.getOprFornavn() + "', opr_efternavn = '" + opr.getOprEfternavn() + "', ini =  '" + opr.getIni() + 
 				"', cpr = '" + opr.getCpr() + "', password = '" + opr.getPassword() + "' WHERE opr_id = " +
-				opr.getOprId()
+				opr.getOprId() + ";"
 		);
 	}
 	
 	public List<OperatoerDTO> getOperatoerList() throws DALException {
 		List<OperatoerDTO> list = new ArrayList<OperatoerDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer");
+		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer;");
 		try
 		{
 			while (rs.next()) 

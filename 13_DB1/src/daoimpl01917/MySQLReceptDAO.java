@@ -14,7 +14,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 
 	@Override
 	public ReceptDTO getRecept(int receptId) throws DALException {
-				ResultSet rs = Connector.doQuery("SELECT * FROM recept WHERE recept_id = " + receptId);
+				ResultSet rs = Connector.doQuery("SELECT * FROM recept WHERE recept_id = " + receptId + ";");
 			    try {
 			    	if (!rs.first()) throw new DALException("recepten " + receptId + " findes ikke");
 			    	return new ReceptDTO (rs.getInt("recept_id"), rs.getString("recept_navn"));
@@ -26,7 +26,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 	@Override
 	public List<ReceptDTO> getReceptList() throws DALException {
 		List<ReceptDTO> list = new ArrayList<ReceptDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM recept");
+		ResultSet rs = Connector.doQuery("SELECT * FROM recept;");
 		try
 		{
 			while (rs.next()) 
@@ -42,7 +42,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 	public void createRecept(ReceptDTO recept) throws DALException {
 		Connector.doUpdate(
 				"INSERT INTO recept(recept_id, recept_navn) VALUES " +
-				"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "')"
+				"(" + recept.getReceptId() + ", '" + recept.getReceptNavn() + "');"
 			);
 
 	}
@@ -51,7 +51,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 	public void updateRecept(ReceptDTO recept) throws DALException {
 		Connector.doUpdate(
 				"UPDATE recept SET  recept_navn = '" + recept.getReceptNavn() + "'WHERE recept_id = " +
-				recept.getReceptId()
+				recept.getReceptId() + ";"
 		);
 
 	}
