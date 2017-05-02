@@ -1,0 +1,2 @@
+SELECT * FROM operatoer WHERE opr_id = ? ;
+call add_operatoer(?, ?, ?, ?, ?, ?);

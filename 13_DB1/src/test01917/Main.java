@@ -22,12 +22,12 @@ public class Main {
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		
 		System.out.println("Indsaettelse af ny operatoer med opr_id =  4");
-		OperatoerDTO oprDTO = new OperatoerDTO(4,"Don", "Juan","DJ","000000-0000","iloveyou");
+		OperatoerDTO oprDTO = new OperatoerDTO(12,"Don", "Juan","DJ","000000-0000","iloveyou");
 		try { opr.createOperatoer(oprDTO); }
 		catch (DALException e) { System.out.println(e.getMessage()); }	
 		
-		System.out.println("Operatoer nummer 4:");
-		try { System.out.println(opr.getOperatoer(4)); }
+		System.out.println("Operatoer nummer 40:");
+		try { System.out.println(opr.getOperatoer(40)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		
 		System.out.println("Opdatering af initialer for operatoer nummer 4");
