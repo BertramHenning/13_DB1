@@ -1,28 +1,24 @@
 package daoimpl01917;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connector01917.Connector;
+import connector01917.Connector2;
 import daointerfaces01917.DALException;
 import daointerfaces01917.ProduktBatchDAO;
+import dto01917.OperatoerDTO;
 import dto01917.ProduktBatchDTO;
 
 public class MySQLProduktBatchDAO implements ProduktBatchDAO {
-	private Connector connector = new Connector();
+	private Connector2 connector = new Connector2();
 
 	@Override
 	public ProduktBatchDTO getProduktBatch(int pbId) throws DALException {
 		ResultSet rs;
 		try {
-			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("getCommands.txt")).get(1));
-			stmt.setInt(1, pbId);
-			rs = stmt.executeQuery();
+			rs = connector.doQuery("SELECT * FROM operatoer WHERE pb_id = " + pbId + ";");
 		} catch (Exception e) {
 			throw new DALException(e.getMessage());
 		}
@@ -56,27 +52,27 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 	@Override
 	public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
 		try {
-			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("createCommands.txt")).get(1));
-			stmt.setInt(1, produktbatch.getPbId());
-			stmt.setInt(2, produktbatch.getStatus());
-			stmt.setInt(3, produktbatch.getReceptId());
-			stmt.executeQuery();
+			connector.doUpdate(
+					"INSERT INTO produktbatch(pb_id, status, recept_id) VALUES " +
+					"(" + produktbatch.getPbId() + ", '" + produktbatch.getStatus() + ", '" + produktbatch.getReceptId() + "');"
+				);
 		} catch (Exception e) {
 			throw new DALException(e.getMessage());
 		}
+
 	}
 
 	@Override
 	public void updateProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
 		try {
-			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("updateCommands.txt")).get(1));
-			stmt.setInt(1, produktbatch.getPbId());
-			stmt.setInt(2, produktbatch.getStatus());
-			stmt.setInt(3, produktbatch.getReceptId());
-			stmt.executeQuery();
+			connector.doUpdate(
+					"UPDATE produktbatch SET  status = '" + produktbatch.getStatus() + "', recept_id =  '" + produktbatch.getReceptId() + 
+					"' WHERE pb_id = " + produktbatch.getPbId() + ";"
+			);
 		} catch (Exception e) {
 			throw new DALException(e.getMessage());
 		}
 
 	}
+
 }

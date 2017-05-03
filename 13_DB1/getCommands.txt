@@ -1,7 +1,0 @@
-SELECT * FROM operatoer WHERE opr_id = ?;
-SELECT * FROM produktbatch WHERE pb_id = ?;
-SELECT * FROM produktbatchkomponent WHERE pb_id = ? AND rb_id = ?;
-SELECT * FROM raavarebatch WHERE rb_id = ?;
-SELECT * FROM raavare WHERE raavare_id = ?;
-SELECT * FROM recept WHERE recept_id = ?;
-SELECT * FROM receptkomponent WHERE recept_id = ? AND raavare_id = ?;

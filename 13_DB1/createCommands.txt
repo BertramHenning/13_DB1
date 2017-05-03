@@ -1,7 +1,0 @@
-call add_operatoer(?, ?, ?, ?, ?, ?);
-call add_produktbatch(?, ?, ?);
-call add_produktbatchkomponent(?, ?, ?, ?, ?);
-call add_raavarebatch(?, ?, ?);
-call add_raavare(?, ?, ?);
-call add_recept(?, ?);
-call add_receptkomponent(?, ?, ?, ?);

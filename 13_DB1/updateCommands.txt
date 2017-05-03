@@ -1,7 +1,0 @@
-call update_operatoer1(?, ?, ?, ?, ?, ?);
-call update_produktbatch(?, ?, ?);
-call update_produktbatchkomponent(?, ?, ?, ?, ?);
-call update_raavarebatch(?, ?, ?);
-call update_raavare(?, ?, ?);
-call update_recept(?, ?);
-call update_receptkomponent(?, ?, ?, ?);
