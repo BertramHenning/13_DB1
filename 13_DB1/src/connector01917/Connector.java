@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /** @author Ronnie Dalsgaard */
-public class Connector2 {
-    private final String HOST     = "Localhost";
+public class Connector {
+    private final String HOST     = "sql8.freemysqlhosting.net";
     private final int    PORT     = 3306;
-    private final String DATABASE = "02327_project";
-    private final String USERNAME = "root"; 
-    private final String PASSWORD = "";
+    private final String DATABASE = "sql8166117";
+    private final String USERNAME = "sql8166117"; 
+    private final String PASSWORD = "Elxy6HhCla";
     private Connection connection;
     
-    public Connector2() {
+    public Connector() {
         try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
