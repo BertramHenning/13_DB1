@@ -85,6 +85,13 @@ public class MySQLOperatoerDAO implements OperatoerDAO{
 		catch (SQLException e) { throw new DALException(e); }
 		return list;
 	}
+
+	@Override
+	public String getCPR(int oprdId) throws DALException {
+		
+		return null;
+	}
+
 	
 	
 }

@@ -2,8 +2,11 @@ package test01917;
 
 import daoimpl01917.MySQLOperatoerDAO;
 import daoimpl01917.MySQLRaavareBatchDAO;
+import daointerfaces01917.RaavareBatchDAO;
+import daointerfaces01917.TransactionsDAO;
 import daoimpl01917.MySQLTransactionsDAO;
 import daointerfaces01917.DALException;
+import daointerfaces01917.OperatoerDAO;
 import dto01917.OperatoerDTO;
 
 
@@ -11,15 +14,17 @@ public class Main {
 	public static void main(String[] args) {
 		
 		System.out.println("transactions");
-		MySQLRaavareBatchDAO raavare = new MySQLRaavareBatchDAO();
+		RaavareBatchDAO raavare = new MySQLRaavareBatchDAO();
 		try {
-			System.out.println("råvare 1: " + raavare.getRaavareBatch(1));
-			System.out.println("råvare 1: " + raavare.getRaavareBatch(8));
+			System.out.println("råvareBatch " + raavare.getRaavareBatch(1));
+			System.out.println("råvareBatch " + raavare.getRaavareBatch(8));
 		} catch (DALException e1) {
 			e1.printStackTrace();
 		}
 		
-		MySQLTransactionsDAO trans = new MySQLTransactionsDAO();
+		
+		System.out.println("move 100 from 1 to 8");
+		TransactionsDAO trans = new MySQLTransactionsDAO();
 		try {
 			trans.BatchMaengdeExchange1(100, 1, 8);
 		} catch (DALException e2) {
@@ -33,8 +38,14 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
+		try {
+			trans.BatchMaengdeExchange1(100, 8, 1);
+		} catch (DALException e2) {
+			e2.printStackTrace();
+		}
+		
 		System.out.println("Operatoer nummer 3:");
-		MySQLOperatoerDAO opr = new MySQLOperatoerDAO();
+		OperatoerDAO opr = new MySQLOperatoerDAO();
 		try { System.out.println(opr.getOperatoer(3)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		
