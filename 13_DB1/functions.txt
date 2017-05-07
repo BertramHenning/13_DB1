@@ -1,4 +1,4 @@
-call operatoer_cpr(?);
-call pb_status(?);
-call getRaavare_navn(?);
-call getMaengde(?);
+select operatoer_cpr2(?);
+select pb_status(?);
+select getRaavare_navn(?);
+select getMaengde(?);

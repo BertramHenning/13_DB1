@@ -87,7 +87,8 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("functions.txt")).get(1));
 			stmt.setInt(1, pbId);
 			rs = stmt.executeQuery();
-			return rs.getInt("status");
+			rs.next();
+			return rs.getInt(1); 
 		} catch (Exception e) {
 			throw new DALException(e.getMessage());
 		}

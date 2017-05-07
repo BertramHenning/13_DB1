@@ -94,7 +94,8 @@ public class MySQLOperatoerDAO implements OperatoerDAO{
 			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("functions.txt")).get(0));
 			stmt.setInt(1, oprId);
 			rs = stmt.executeQuery();
-			return rs.getString("cpr");
+			rs.next();
+			return rs.getString(1); 
 		} catch (Exception e) {
 			throw new DALException(e.getMessage());
 		}

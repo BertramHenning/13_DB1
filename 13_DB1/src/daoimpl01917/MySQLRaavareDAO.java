@@ -88,7 +88,8 @@ public class MySQLRaavareDAO implements RaavareDAO {
 			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("functions.txt")).get(2));
 			stmt.setInt(1, raavareId);
 			rs = stmt.executeQuery();
-			return rs.getString("navn");
+			rs.next();
+			return rs.getString(1); 
 		} catch (Exception e) {
 			throw new DALException(e.getMessage());
 		}
