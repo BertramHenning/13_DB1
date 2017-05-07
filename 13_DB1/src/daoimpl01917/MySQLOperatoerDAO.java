@@ -1,5 +1,6 @@
 package daoimpl01917;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.PreparedStatement;
@@ -87,9 +88,17 @@ public class MySQLOperatoerDAO implements OperatoerDAO{
 	}
 
 	@Override
-	public String getCPR(int oprdId) throws DALException {
-		
-		return null;
+	public String getCPR(int oprId) throws DALException {
+		ResultSet rs;
+		try {
+			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("functions.txt")).get(0));
+			stmt.setInt(1, oprId);
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getString(1); 
+		} catch (Exception e) {
+			throw new DALException(e.getMessage());
+		}
 	}
 
 	

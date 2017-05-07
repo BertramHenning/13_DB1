@@ -101,4 +101,18 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO {
 
 	}
 
+	@Override
+	public double getMaengde(int rbId) throws DALException {
+		ResultSet rs;
+		try {
+			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("functions.txt")).get(3));
+			stmt.setInt(1, rbId);
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getDouble(1); 
+		} catch (Exception e) {
+			throw new DALException(e.getMessage());
+		}
+	}
+
 }

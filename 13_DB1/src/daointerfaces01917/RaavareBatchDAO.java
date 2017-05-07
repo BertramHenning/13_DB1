@@ -10,5 +10,6 @@ public interface RaavareBatchDAO {
 	List<RaavareBatchDTO> getRaavareBatchList(int raavareId) throws DALException;
 	void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException;
 	void updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException;
+	double getMaengde(int rbId) throws DALException;
 }
 

@@ -1,0 +1,4 @@
+select operatoer_cpr2(?);
+select pb_status(?);
+select getRaavare_navn(?);
+select getMaengde(?);

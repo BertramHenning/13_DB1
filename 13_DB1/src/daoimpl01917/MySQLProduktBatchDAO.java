@@ -79,4 +79,18 @@ public class MySQLProduktBatchDAO implements ProduktBatchDAO {
 		}
 
 	}
+
+	@Override
+	public int getPbStatus(int pbId) throws DALException {
+		ResultSet rs;
+		try {
+			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("functions.txt")).get(1));
+			stmt.setInt(1, pbId);
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getInt(1); 
+		} catch (Exception e) {
+			throw new DALException(e.getMessage());
+		}
+	}
 }
