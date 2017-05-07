@@ -34,9 +34,11 @@ public class CreateUserTest {
 		
 		System.out.println("indtast password:");
 		String password = sc.nextLine();
+
+		sc.close();
 		
 		OperatoerDTO newopr = new OperatoerDTO(id, fornavn, efternavn, ini, cpr, password);
-		
+			
 		try {
 			opr.createOperatoer(newopr);
 		} catch (DALException e) {

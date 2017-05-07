@@ -1,0 +1,4 @@
+call operatoer_cpr(?);
+call pb_status(?);
+call getRaavare_navn(?);
+call getMaengde(?);

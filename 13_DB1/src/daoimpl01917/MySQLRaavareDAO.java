@@ -81,4 +81,17 @@ public class MySQLRaavareDAO implements RaavareDAO {
 
 	}
 
+	@Override
+	public String getRaavareNavn(int raavareId) throws DALException {
+		ResultSet rs;
+		try {
+			PreparedStatement stmt = connector.getConnection().prepareStatement(Files.readAllLines(Paths.get("functions.txt")).get(2));
+			stmt.setInt(1, raavareId);
+			rs = stmt.executeQuery();
+			return rs.getString("navn");
+		} catch (Exception e) {
+			throw new DALException(e.getMessage());
+		}
+	}
+
 }
